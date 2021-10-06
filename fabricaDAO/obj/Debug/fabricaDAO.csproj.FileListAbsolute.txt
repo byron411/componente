@@ -1,0 +1,16 @@
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\bin\Debug\fabricaDAO.dll
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\bin\Debug\fabricaDAO.pdb
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.csproj.CopyComplete
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.dll
+C:\Users\Administrator\source\repos\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.pdb
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\bin\Debug\fabricaDAO.dll
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\bin\Debug\fabricaDAO.pdb
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.csproj.CopyComplete
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.dll
+C:\Users\Administrator\Desktop\subir\fabricaDAO\fabricaDAO\obj\Debug\fabricaDAO.pdb

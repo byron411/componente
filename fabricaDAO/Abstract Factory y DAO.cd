@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="fabricaDatos.CiudadDTO" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAACAAIAAQAgCAAAAQAAAIAAAAAEAIAAAA=</HashCode>
+      <FileName>CiudadDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fabricaDatos.DAOFactory" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAEAAACAEAAAAAAAACA=</HashCode>
+      <FileName>DAOFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fabricaDatos.IdiomaDTO" Collapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAIAAAACAwAAAAAgAAAAAQAAAAAAAIAAAIAIAA=</HashCode>
+      <FileName>IdiomaDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fabricaDatos.MySQLCiudadDAO" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAEAAAAQAQAAAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>MySQLCiudadDAO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="fabricaDatos.MySQLDAO" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAgAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>MySQLDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fabricaDatos.MysqlDAOFactory" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAAEAAAAAAQEAAAQAAAAEAAISKACAAAgAAACA=</HashCode>
+      <FileName>MysqlDAOFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="fabricaDatos.MySQLExtensionDAO" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AggAAAQACAAAABAAAAAAAEABAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>MySQLExtensionDAO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="fabricaDatos.MySQLIdiomaDAO" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAEAAAAQAQAAAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>MySQLIdiomaDAO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="fabricaDatos.MySQLPaisDAO" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAABAAAQAEAAAAQAQAAAAAAAEAAAAIAAEAAA=</HashCode>
+      <FileName>MySQLPaisDAO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="fabricaDatos.PaisDTO" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AGAAEQCCgAABCAAAAgACgCAgAAQAAAAQAAAAEEIBQAA=</HashCode>
+      <FileName>PaisDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="fabricaDatos.CiudadDAO" Collapsed="true">
+    <Position X="12.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAEAAAAQAQAAAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>CiudadDAO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="fabricaDatos.ExtensionDAO" Collapsed="true">
+    <Position X="14.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AggAAAQACAAAABAAAAAAAEABAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>ExtensionDAO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="fabricaDatos.IdiomaDAO" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAEAAAAQAQAAAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>IdiomaDAO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="fabricaDatos.PaisDAO" Collapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAEAAAAQAQAAAAAAAAAAAAIAAEAAA=</HashCode>
+      <FileName>PaisDAO.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="fabricaDatos.TipoDAO" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAQAAAAQAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>TipoBD.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
