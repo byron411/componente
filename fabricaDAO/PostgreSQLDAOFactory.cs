@@ -82,7 +82,7 @@ namespace fabricaDAO
         //Métodos override de la clase que hereda
         public override CiudadDAO darCiudadDAO()
         {
-            throw new NotImplementedException();
+            return new PostgreSQLCiudadDAO();
         }
 
         public override ExtensionDAO darExtensionDAO()

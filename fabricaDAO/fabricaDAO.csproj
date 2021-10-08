@@ -94,6 +94,7 @@
     <Compile Include="MySQLPaisDAO.cs" />
     <Compile Include="PaisDAO.cs" />
     <Compile Include="PaisDTO.cs" />
+    <Compile Include="PostgreSQLCiudadDAO.cs" />
     <Compile Include="PostgreSQLDAO.cs" />
     <Compile Include="PostgreSQLDAOFactory.cs" />
     <Compile Include="PostgreSQLIdiomaDAO.cs" />
