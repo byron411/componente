@@ -9,16 +9,16 @@ namespace fabricaDAO
     //Clase para las operaciones SQL de la tabla pais
     public class PostgreSQLPaisDAO : PostgreSQLDAO, PaisDAO
     {
-
-        
-       //Métodos que implementa de la interfaz
-       /*
-        * Ingresa un nuevo país en caso de no haberse incluido
-        * @param pPais objeto país a ingresar a la base de datos
-        * @exception lanza una excepción si no logra ingresar el nuevo pais
-        * @return devuelve verdadero en caso de no haber error
-        */
-       public bool insert(PaisDTO pPais)
+        public PostgreSQLPaisDAO() : base() { }
+       
+        //Métodos que implementa de la interfaz
+        /*
+         * Ingresa un nuevo país en caso de no haberse incluido
+         * @param pPais objeto país a ingresar a la base de datos
+         * @exception lanza una excepción si no logra ingresar el nuevo pais
+         * @return devuelve verdadero en caso de no haber error
+         */
+        public bool insert(PaisDTO pPais)
         {
             try
             {

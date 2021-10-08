@@ -92,7 +92,7 @@ namespace fabricaDAO
 
         public override IdiomaDAO darIdiomaDAO()
         {
-            throw new NotImplementedException();
+            return new PostgreSQLIdiomaDAO();
         }
 
         /*

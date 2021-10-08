@@ -96,6 +96,7 @@
     <Compile Include="PaisDTO.cs" />
     <Compile Include="PostgreSQLDAO.cs" />
     <Compile Include="PostgreSQLDAOFactory.cs" />
+    <Compile Include="PostgreSQLIdiomaDAO.cs" />
     <Compile Include="PostgreSQLPaisDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoBD.cs" />
