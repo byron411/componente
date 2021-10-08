@@ -32,6 +32,7 @@ namespace fabricaDAO
         public static int Port
         {
             get { return _port; }
+            set { _port = value; }
         }
         public static string User
         {
@@ -94,9 +95,13 @@ namespace fabricaDAO
             throw new NotImplementedException();
         }
 
+        /*
+         *@returns devuelve un objeto de PasisDo 
+         */
         public override PaisDAO darPaisDAO()
         {
-            throw new NotImplementedException();
+            
+            return new PostgreSQLPaisDAO();
         }
     }
 }

@@ -38,6 +38,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Downloads\Librerías\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="Npgsql, Version=5.0.10.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.5.0.10\lib\netstandard2.0\Npgsql.dll</HintPath>
     </Reference>
@@ -93,7 +94,9 @@
     <Compile Include="MySQLPaisDAO.cs" />
     <Compile Include="PaisDAO.cs" />
     <Compile Include="PaisDTO.cs" />
+    <Compile Include="PostgreSQLDAO.cs" />
     <Compile Include="PostgreSQLDAOFactory.cs" />
+    <Compile Include="PostgreSQLPaisDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoBD.cs" />
   </ItemGroup>
