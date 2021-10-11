@@ -56,8 +56,8 @@ namespace fabricaDAO
             try
             {
                //TODO sql para moficicar un pais
-                string sentencia = "update pais set nombre='Modificado' " +
-                    "where codigo_pais='wxy';";
+               string sentencia="update pais set continente='"+pPais.Continente+"', nombre='"+pPais.Nombre+"',region='"+pPais.Region+"',anio="+pPais.AnioIndependencia+", poblacion="+pPais.Poblacion+",esperanza="+pPais.EsperanzaVida+",pib="+pPais.Pib+",gobierno='"+pPais.FormaGobierno+"',presidente='"+pPais.Presidente+"',superficie="+pPais.Superficie+"where codigo_pais='"+pPais.IdPais+"'";
+                
                 _conexion.Open();
                 NpgsqlCommand comando = new NpgsqlCommand(sentencia, _conexion);
                 comando.ExecuteNonQuery();
