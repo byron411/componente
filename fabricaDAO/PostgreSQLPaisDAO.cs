@@ -57,11 +57,9 @@ namespace fabricaDAO
                 _conexion.Close();*/
                 //
                 //_conexion = PostgreSQLDAOFactory.crearConexion("localhost", 5432, "postgres", "123456", "onu");
-                Console.WriteLine("hola " + pPais.IdPais);
-                string codigo = pPais.IdPais;
-                string contienete = pPais.Continente;
+                
                 _conexion.Open();
-                string sentencia= "insert into pais(codigo_pais, continente) values('gfd','america');";
+                string sentencia= "insert into pais(codigo_pais,continente, nombre, region, anio, poblacion, esperanza, pib, gobierno, presidente, superficie) values('" + pPais.IdPais+"','"+pPais.Continente+"','"+pPais.Nombre+"','"+pPais.Region+"',"+pPais.AnioIndependencia+","+pPais.Poblacion+","+pPais.EsperanzaVida+","+pPais.Pib+",'"+pPais.FormaGobierno+"','"+pPais.Presidente+"',"+pPais.Superficie+");";
                 NpgsqlCommand comando = new NpgsqlCommand(sentencia, _conexion);
                 comando.ExecuteNonQuery();
                 _conexion.Close();
