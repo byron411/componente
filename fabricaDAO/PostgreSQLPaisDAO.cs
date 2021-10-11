@@ -22,6 +22,7 @@ namespace fabricaDAO
         {
             try
             {
+                /*
                 PaisDTO nuevo = selectByPK(pPais);
 
                 if (nuevo != null)
@@ -53,8 +54,18 @@ namespace fabricaDAO
 
                 _conexion.Open();
                 _comando.ExecuteNonQuery();
-                _conexion.Close();
+                _conexion.Close();*/
                 //
+                //_conexion = PostgreSQLDAOFactory.crearConexion("localhost", 5432, "postgres", "123456", "onu");
+                Console.WriteLine("hola " + pPais.IdPais);
+                string codigo = pPais.IdPais;
+                string contienete = pPais.Continente;
+                _conexion.Open();
+                string sentencia= "insert into pais(codigo_pais, continente) values('gfd','america');";
+                NpgsqlCommand comando = new NpgsqlCommand(sentencia, _conexion);
+                comando.ExecuteNonQuery();
+                _conexion.Close();
+                
                 return true;
             }
             catch (Exception error)
@@ -243,7 +254,7 @@ namespace fabricaDAO
                 PaisDTO pais = new PaisDTO();
 
                 // TODO Completar para llamar al procedimiento que devuelve un país de acuerdo con su ID
-                _comando.CommandText = "seleccionarPaisPorPK";
+                _comando.CommandText = "seleccionar_pais_pk";
                 _comando.Parameters.Clear();
                 _comando.Parameters.AddWithValue("nIdpais", pPais.IdPais);
 

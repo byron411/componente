@@ -74,7 +74,8 @@ namespace fabricaDAO
                                 ";port=" + _port +    
                                 "; user id=" + _user +
                                 "; password=" + _pass +
-                                "; database=" + _database;
+                                "; database=" + _database +
+                                ";";
             //return new postgreSQLConnection(_connectionString);
             return new NpgsqlConnection(_connectionString);
         }
