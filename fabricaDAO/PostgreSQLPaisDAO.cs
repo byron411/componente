@@ -22,42 +22,7 @@ namespace fabricaDAO
         {
             try
             {
-                /*
-                PaisDTO nuevo = selectByPK(pPais);
-
-                if (nuevo != null)
-                {
-                    throw new Exception("El país ya existe !..");
-                }
-
-                nuevo = selectByNombre(pPais);
-
-                if (nuevo != null)
-                {
-                    throw new Exception("El país ya existe !..");
-                }
-
-                // TODO Completar para llamar al procedimiento que inserta un país
-                _comando.CommandText = "insetarpais";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nCodigo_Pais", pPais.IdPais);
-                _comando.Parameters.AddWithValue("nNombre", pPais.Nombre);
-                _comando.Parameters.AddWithValue("nContinente", pPais.Continente);
-                _comando.Parameters.AddWithValue("nRegion", pPais.Region);
-                _comando.Parameters.AddWithValue("nSuperficie", pPais.Superficie);
-                _comando.Parameters.AddWithValue("nAnioIndependencia", pPais.AnioIndependencia);
-                _comando.Parameters.AddWithValue("nPoblacion", pPais.Poblacion);
-                _comando.Parameters.AddWithValue("nEsperanzaVida", pPais.EsperanzaVida);
-                _comando.Parameters.AddWithValue("nPib", pPais.Pib);
-                _comando.Parameters.AddWithValue("nFormaGobierno", pPais.FormaGobierno);
-                _comando.Parameters.AddWithValue("nPresidente", pPais.Presidente);
-
-                _conexion.Open();
-                _comando.ExecuteNonQuery();
-                _conexion.Close();*/
-                //
-                //_conexion = PostgreSQLDAOFactory.crearConexion("localhost", 5432, "postgres", "123456", "onu");
-                
+               //TODO consulta sql para insertar un pais                                 
                 _conexion.Open();
                 string sentencia= "insert into pais(codigo_pais,continente, nombre, region, anio, poblacion, esperanza, pib, gobierno, presidente, superficie) values('" + pPais.IdPais+"','"+pPais.Continente+"','"+pPais.Nombre+"','"+pPais.Region+"',"+pPais.AnioIndependencia+","+pPais.Poblacion+","+pPais.EsperanzaVida+","+pPais.Pib+",'"+pPais.FormaGobierno+"','"+pPais.Presidente+"',"+pPais.Superficie+");";
                 NpgsqlCommand comando = new NpgsqlCommand(sentencia, _conexion);
@@ -90,33 +55,14 @@ namespace fabricaDAO
         {
             try
             {
-                PaisDTO nuevo;
-
-                nuevo = selectByNombre(pPais);
-
-                if (nuevo != null)
-                {
-                    throw new Exception("El país ya existe !..");
-                }
-                // TODO Completar para llamar al procedimiento que actualiza un país
-                _comando.CommandText = "actualizarPais";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nCodigo_Pais", pPais.IdPais);
-                _comando.Parameters.AddWithValue("nNombre", pPais.Nombre);
-                _comando.Parameters.AddWithValue("nContinente", pPais.Continente);
-                _comando.Parameters.AddWithValue("nRegion", pPais.Region);
-                _comando.Parameters.AddWithValue("nSuperficie", pPais.Superficie);
-                _comando.Parameters.AddWithValue("nAnioIndependencia", pPais.AnioIndependencia);
-                _comando.Parameters.AddWithValue("nPoblacion", pPais.Poblacion);
-                _comando.Parameters.AddWithValue("nEsperanzaVida", pPais.EsperanzaVida);
-                _comando.Parameters.AddWithValue("nPib", pPais.Pib);
-                _comando.Parameters.AddWithValue("nFormaGobierno", pPais.FormaGobierno);
-                _comando.Parameters.AddWithValue("nPresidente", pPais.Presidente);
-
+               //TODO sql para moficicar un pais
+                string sentencia = "update pais set nombre='Modificado' " +
+                    "where codigo_pais='wxy';";
                 _conexion.Open();
-                _comando.ExecuteNonQuery();
+                NpgsqlCommand comando = new NpgsqlCommand(sentencia, _conexion);
+                comando.ExecuteNonQuery();
                 _conexion.Close();
-                //
+
                 return true;
             }
             catch (Exception error)
@@ -194,15 +140,20 @@ namespace fabricaDAO
          */
         public List<PaisDTO> selectAll()
         {
+            Console.WriteLine("hola mundo");
             try
             {
                 List<PaisDTO> lista = new List<PaisDTO>();
                 DataSet conjunto = new DataSet();
 
                 // TODO Completar método para llamar al procedimiento que devuelve todos los países
-                _comando.CommandText = "darpaises";
-                _comando.Parameters.Clear();
-                _adaptador.Fill(conjunto);
+                //_comando.CommandText = "darpaises";
+                //_comando.Parameters.Clear();
+                string sql = "select codigo_pais from onu.pais;";
+                _conexion.Open();
+                NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                adaptador.Fill(conjunto);
+                _conexion.Close();
                 //
                 for (int i = 0; i < conjunto.Tables[0].Rows.Count; i++)
                 {
@@ -252,6 +203,7 @@ namespace fabricaDAO
                 PaisDTO pais = new PaisDTO();
 
                 // TODO Completar para llamar al procedimiento que devuelve un país de acuerdo con su ID
+                
                 _comando.CommandText = "seleccionar_pais_pk";
                 _comando.Parameters.Clear();
                 _comando.Parameters.AddWithValue("nIdpais", pPais.IdPais);
@@ -302,53 +254,67 @@ namespace fabricaDAO
          */
         public List<PaisDTO> selectByCriteria(string pIdPais, string pNombre, string pPresidente)
         {
-            try
-            {
-                List<PaisDTO> lista = new List<PaisDTO>();
-                DataSet conjunto = new DataSet();
+            
+                try
+                {
+                    List<PaisDTO> lista = new List<PaisDTO>();
+                    DataSet conjunto = new DataSet();
 
-                // TODO Completar para llamar al procedimiento que devuelve los países de acuerdo con los parámetros dados
-                _comando.CommandText = "seleccionarPaisPorCriterio";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("pIdPais", pIdPais);
-                _comando.Parameters.AddWithValue("pNombre", pNombre);
-                _comando.Parameters.AddWithValue("pPresidente", pPresidente);
-                _adaptador.Fill(conjunto);
+                // TODO Completar para ejecutar sql que devuelve los países de acuerdo con los parámetros dados
+               
                 //
-                for (int i = 0; i < conjunto.Tables[0].Rows.Count; i++)
+                if (pIdPais == "" && pNombre == "" && pPresidente == "")
                 {
-                    PaisDTO pais = new PaisDTO();
-
-                    pais.AnioIndependencia = Convert.ToInt32(conjunto.Tables[0].Rows[i]["anioIndependencia"]);
-                    pais.Continente = conjunto.Tables[0].Rows[i]["continente"] + "";
-                    pais.EsperanzaVida = Convert.ToInt32(conjunto.Tables[0].Rows[i]["esperanzaVida"]);
-                    pais.FormaGobierno = conjunto.Tables[0].Rows[i]["formaGobierno"] + "";
-                    pais.IdPais = conjunto.Tables[0].Rows[i]["codigo_pais"] + "";
-                    pais.Nombre = conjunto.Tables[0].Rows[i]["nombre"] + "";
-                    pais.Pib = Convert.ToDouble(conjunto.Tables[0].Rows[i]["pib"]);
-                    pais.Poblacion = Convert.ToInt32(conjunto.Tables[0].Rows[i]["poblacion"]);
-                    pais.Presidente = conjunto.Tables[0].Rows[i]["presidente"] + "";
-                    pais.Region = conjunto.Tables[0].Rows[i]["region"] + "";
-                    pais.Superficie = Convert.ToDouble(conjunto.Tables[0].Rows[i]["superficie"]);
-
-                    lista.Add(pais);
-                }
-                return lista;
-            }
-            catch (Exception error)
-            {
-
-                throw new Exception(error.Message);
-            }
-            finally
-            {
-                if (_conexion.State == ConnectionState.Open)
-                {
+                    string sql = "select * from pais;"; // where codigo_pais = 'ecu' and nombre = 'Ecuador' and presidente = 'lenin'; ";
+                    _conexion.Open();
+                    NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                    adaptador.Fill(conjunto);
                     _conexion.Close();
                 }
-            }
-        }
+                else
+                {
+                    string sql = "select * from pais where codigo_pais ='"+pIdPais+"' or nombre='"+pNombre+"' or presidente='"+pPresidente+"' "; 
+                        
+                    _conexion.Open();
+                    NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                    adaptador.Fill(conjunto);
+                    _conexion.Close();
+                }
 
+                    for (int i = 0; i < conjunto.Tables[0].Rows.Count; i++)
+                    {
+                        PaisDTO pais = new PaisDTO();
+
+                        pais.AnioIndependencia = Convert.ToInt32(conjunto.Tables[0].Rows[i]["anio"]);
+                        pais.Continente = conjunto.Tables[0].Rows[i]["continente"] + "";
+                        pais.EsperanzaVida = Convert.ToInt32(conjunto.Tables[0].Rows[i]["esperanza"]);
+                        pais.FormaGobierno = conjunto.Tables[0].Rows[i]["gobierno"] + "";
+                        pais.IdPais = conjunto.Tables[0].Rows[i]["codigo_pais"] + "";
+                        pais.Nombre = conjunto.Tables[0].Rows[i]["nombre"] + "";
+                        pais.Pib = Convert.ToDouble(conjunto.Tables[0].Rows[i]["pib"]);
+                        pais.Poblacion = Convert.ToInt32(conjunto.Tables[0].Rows[i]["poblacion"]);
+                        pais.Presidente = conjunto.Tables[0].Rows[i]["presidente"] + "";
+                        pais.Region = conjunto.Tables[0].Rows[i]["region"] + "";
+                        pais.Superficie = Convert.ToDouble(conjunto.Tables[0].Rows[i]["superficie"]);
+
+                        lista.Add(pais);
+                    }
+                    return lista;
+                }
+                catch (Exception error)
+                {
+
+                    throw new Exception(error.Message);
+                }
+                finally
+                {
+                    if (_conexion.State == ConnectionState.Open)
+                    {
+                        _conexion.Close();
+                    }
+                }
+            }
+            
         
 
         /*
