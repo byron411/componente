@@ -21,10 +21,18 @@ namespace fabricaDAO
         //Constructor. Inicializa los objetos para manejo de datos en PostgreSQL
         public PostgreSQLDAO()
         {
-            _conexion = PostgreSQLDAOFactory.crearConexion("localhost", 5432, "root", "123456", "onu");
+            _conexion = PostgreSQLDAOFactory.crearConexion("localhost", 5432, "postgres", "123456", "onu");
             _comando = new NpgsqlCommand("", _conexion);
-            //_comando.CommandType=Comm
+             _comando.CommandType = System.Data.CommandType.StoredProcedure;
             _adaptador = new NpgsqlDataAdapter(_comando);
+
+            /*
+             * _comando = new MySqlCommand("", _conexion);
+            _comando.CommandType = CommandType.StoredProcedure;
+            _adaptador = new MySqlDataAdapter(_comando);
+             */
+
+
 
         }
     }

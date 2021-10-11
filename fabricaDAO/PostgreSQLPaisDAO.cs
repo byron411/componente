@@ -37,7 +37,7 @@ namespace fabricaDAO
                 }
 
                 // TODO Completar para llamar al procedimiento que inserta un país
-                _comando.CommandText = "insertarPais";
+                _comando.CommandText = "insetarpais";
                 _comando.Parameters.Clear();
                 _comando.Parameters.AddWithValue("nCodigo_Pais", pPais.IdPais);
                 _comando.Parameters.AddWithValue("nNombre", pPais.Nombre);
@@ -191,7 +191,7 @@ namespace fabricaDAO
                 DataSet conjunto = new DataSet();
 
                 // TODO Completar método para llamar al procedimiento que devuelve todos los países
-                _comando.CommandText = "seleccionarPais";
+                _comando.CommandText = "darpaises";
                 _comando.Parameters.Clear();
                 _adaptador.Fill(conjunto);
                 //
