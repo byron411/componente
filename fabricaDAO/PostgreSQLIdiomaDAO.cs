@@ -21,19 +21,14 @@ namespace fabricaDAO
             try
             {
 
-                // TODO Completar para llamar al procedimiento que inserta un idioma
-                _comando.CommandText = "insertarIdioma";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nNombre", pIdioma.Nombre);
-                _comando.Parameters.AddWithValue("nOficial", pIdioma.Oficial);
-                _comando.Parameters.AddWithValue("nPorcentajeUtilizacion", pIdioma.PorcentajeUtilizacion);
-                _comando.Parameters.AddWithValue("nCodigo_pais", pIdioma.IdPais);
-
+                // TODO Completar para ejecutar sql que inserta un idioma
+                string sql = "insert into idioma (nombre, oficial, porcentajeutilizacion, codigo_pais) values('"+pIdioma.Nombre+"',"+pIdioma.Oficial+","+pIdioma.PorcentajeUtilizacion+",'"+pIdioma.IdPais+"');";
                 _conexion.Open();
-                _comando.ExecuteNonQuery();
+                NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
+                comando.ExecuteNonQuery();
                 _conexion.Close();
-                //
                 return true;
+
             }
             catch (Exception error)
             {
@@ -175,14 +170,13 @@ namespace fabricaDAO
                 DataSet conjunto = new DataSet();
                 IdiomaDTO idioma = new IdiomaDTO();
 
-                // TODO Completar para llamar al procedimiento que devuelve un país de acuerdo con su ID
-                _comando.CommandText = "seleccionarIdiomaPorPK";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nIdCiudad", pIdioma.IdIdioma);
-
-                _adaptador.Fill(conjunto);
-                //
-
+                // TODO Completar para ejecutar sql que devuelve un país de acuerdo con su ID
+           
+                string sql = "select * from idioma where codigo_idioma=" + pIdioma.IdIdioma + ";";
+                _conexion.Open();
+                NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                adaptador.Fill(conjunto);
+                _conexion.Close();
                 if (conjunto.Tables[0].Rows.Count == 0)
                 {
                     return null;
@@ -223,14 +217,13 @@ namespace fabricaDAO
                 List<IdiomaDTO> lista = new List<IdiomaDTO>();
                 DataSet conjunto = new DataSet();
 
-                // TODO Completar para llamar al procedimiento que devuelve los idiomas de acuerdo con los parámetros dados
-                _comando.CommandText = "seleccionarIdiomaPorCriterio";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("pIdPais", pIdPais);
-                _comando.Parameters.AddWithValue("pNombre", pNombre);
-                _comando.Parameters.AddWithValue("pOficial", pOficial);
-                _adaptador.Fill(conjunto);
-                //
+                // TODO Completar para ejecutar sql que devuelve los idiomas de acuerdo con los parámetros dados
+                
+                string sql = "select * from idioma where codigo_pais='"+pIdPais+"' or nombre='"+pNombre+"' or oficial="+pOficial+";";
+                _conexion.Open();
+                NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                adaptador.Fill(conjunto);
+                _conexion.Close();
                 for (int i = 0; i < conjunto.Tables[0].Rows.Count; i++)
                 {
                     IdiomaDTO idioma = new IdiomaDTO();
@@ -238,7 +231,7 @@ namespace fabricaDAO
                     idioma.IdIdioma = Convert.ToInt32(conjunto.Tables[0].Rows[i]["id_idioma"]);
                     idioma.Nombre = conjunto.Tables[0].Rows[i]["nombre"] + "";
                     idioma.Oficial = Convert.ToInt32(conjunto.Tables[0].Rows[i]["oficial"]);
-                    idioma.PorcentajeUtilizacion = Convert.ToDouble(conjunto.Tables[0].Rows[i]["porcentajeUtilizacion"]);
+                    idioma.PorcentajeUtilizacion = Convert.ToDouble(conjunto.Tables[0].Rows[i]["porcentajeutilizacion"]);
                     idioma.IdPais = conjunto.Tables[0].Rows[i]["codigo_pais"] + "";
 
                     lista.Add(idioma);

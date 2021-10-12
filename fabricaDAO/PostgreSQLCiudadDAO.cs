@@ -214,16 +214,8 @@ namespace fabricaDAO
                 List<CiudadDTO> lista = new List<CiudadDTO>();
                 DataSet conjunto = new DataSet();
 
-                // Llamar al procedimiento que devuelve las ciudades de acuerdo con los parámetros dados
-                /*if (pIdPais == "" && pNombre == "" && pDistrito == "") { 
-                string sql = "select * from ciudad;";
-                _conexion.Open();
-                NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
-                adaptador.Fill(conjunto);
-                _conexion.Close();
-            }
-                else
-                {*/
+                
+            
                     string sql = "select * from ciudad where codigo_pais='"+pIdPais+"' or nombre='"+pNombre+"' or distrito='"+pDistrito+"';";
                     _conexion.Open();
                     NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
