@@ -208,12 +208,29 @@ namespace fabricaDAO
                 DataSet conjunto = new DataSet();
 
                 // TODO Completar para ejecutar sql que devuelve los idiomas de acuerdo con los parámetros dados
-                
-                string sql = "select * from idioma where codigo_pais='"+pIdPais+"' or nombre='"+pNombre+"' or oficial="+pOficial+";";
+                if (pOficial == 1) { 
+                string sql = "select * from idioma where codigo_pais='"+pIdPais+"' and oficial=1;";
                 _conexion.Open();
                 NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
                 adaptador.Fill(conjunto);
                 _conexion.Close();
+                }
+                else if (pOficial == 0)
+                {
+                    string sql = "select * from idioma where codigo_pais='" + pIdPais + "' and oficial=0;";
+                    _conexion.Open();
+                    NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                    adaptador.Fill(conjunto);
+                    _conexion.Close();
+                }
+                else if (pNombre != "")
+                {
+                    string sql = "select * from idioma where codigo_pais='" + pIdPais + "' and nombre='"+pNombre+"';";
+                    _conexion.Open();
+                    NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                    adaptador.Fill(conjunto);
+                    _conexion.Close();
+                }
                 for (int i = 0; i < conjunto.Tables[0].Rows.Count; i++)
                 {
                     IdiomaDTO idioma = new IdiomaDTO();
