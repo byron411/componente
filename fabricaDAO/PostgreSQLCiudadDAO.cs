@@ -86,14 +86,7 @@ namespace fabricaDAO
         {
             try
             {
-                // Llamar al procedimiento que elimina a una ciudad
-                /*_comando.CommandText = "eliminarCiudad";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nCodigo_ciudad", pCiudad.IdCiudad);
-
-                _conexion.Open();
-                _comando.ExecuteNonQuery();
-                _conexion.Close();*/
+                // ejecutar sql que elimina a una ciudad
                 string sql = "delete from ciudad where codigo_ciudad="+pCiudad.IdCiudad+"";
                 _conexion.Open();
                 NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
@@ -222,7 +215,7 @@ namespace fabricaDAO
                 DataSet conjunto = new DataSet();
 
                 // Llamar al procedimiento que devuelve las ciudades de acuerdo con los parámetros dados
-                if (pIdPais == "" && pNombre == "" && pDistrito == "") { 
+                /*if (pIdPais == "" && pNombre == "" && pDistrito == "") { 
                 string sql = "select * from ciudad;";
                 _conexion.Open();
                 NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
@@ -230,13 +223,13 @@ namespace fabricaDAO
                 _conexion.Close();
             }
                 else
-                {
+                {*/
                     string sql = "select * from ciudad where codigo_pais='"+pIdPais+"' or nombre='"+pNombre+"' or distrito='"+pDistrito+"';";
                     _conexion.Open();
                     NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
                     adaptador.Fill(conjunto);
                     _conexion.Close();
-                }
+                //}
                 //
                 for (int i = 0; i < conjunto.Tables[0].Rows.Count; i++)
                 {
