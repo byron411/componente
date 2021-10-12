@@ -89,36 +89,7 @@ namespace fabricaDAO
         {
             try
             {
-                /*
-                PaisDTO nuevo;
-
-                nuevo = selectByPK(pPais);
-
-                if (nuevo == null)
-                {
-                    throw new Exception("El país NO existe !..");
-                }
-
-                int numCiudades = selectCiudadesByPais(pPais.IdPais);
-                if (numCiudades > 0)
-                {
-                    throw new Exception("El país tiene ciudades registradas, NO se puede eliminar !..");
-                }
-
-                int numIdiomas = selectIdiomasByPais(pPais.IdPais);
-                if (numIdiomas > 0)
-                {
-                    throw new Exception("El país tiene idiomas registrados, NO se puede eliminar !..");
-                }
-                // TODO Completar para llamar al procedimiento que elimina a un país
-                _comando.CommandText = "eliminarPais";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nCodigo_Pais", pPais.IdPais);
-
-                _conexion.Open();
-                _comando.ExecuteNonQuery();
-                _conexion.Close();
-                //*/
+                //Consulta sql 
                 string sql = "delete from pais where codigo_pais='" + pPais.IdPais + "';";
                 _conexion.Open();
                 NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
@@ -208,24 +179,21 @@ namespace fabricaDAO
                 DataSet conjunto = new DataSet();
                 PaisDTO pais = new PaisDTO();
 
-                // TODO Completar para llamar al procedimiento que devuelve un país de acuerdo con su ID
-                
-                _comando.CommandText = "seleccionar_pais_pk";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nIdpais", pPais.IdPais);
-
-                _adaptador.Fill(conjunto);
-                //
-
+                // TODO Completar para ejecutar sql que devuelve un país de acuerdo con su ID
+                string sql = "select * from pais where codigo_pais='"+pPais.IdPais+"';";
+                _conexion.Open();
+                NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                adaptador.Fill(conjunto);
+                _conexion.Close();
                 if (conjunto.Tables[0].Rows.Count == 0)
                 {
                     return null;
                 }
 
-                pais.AnioIndependencia = Convert.ToInt32(conjunto.Tables[0].Rows[0]["anioIndependencia"]);
+                pais.AnioIndependencia = Convert.ToInt32(conjunto.Tables[0].Rows[0]["anio"]);
                 pais.Continente = conjunto.Tables[0].Rows[0]["continente"] + "";
-                pais.EsperanzaVida = Convert.ToInt32(conjunto.Tables[0].Rows[0]["esperanzaVida"]);
-                pais.FormaGobierno = conjunto.Tables[0].Rows[0]["formaGobierno"] + "";
+                pais.EsperanzaVida = Convert.ToInt32(conjunto.Tables[0].Rows[0]["esperanza"]);
+                pais.FormaGobierno = conjunto.Tables[0].Rows[0]["gobierno"] + "";
                 pais.IdPais = conjunto.Tables[0].Rows[0]["codigo_pais"] + "";
                 pais.Nombre = conjunto.Tables[0].Rows[0]["nombre"] + "";
                 pais.Pib = Convert.ToDouble(conjunto.Tables[0].Rows[0]["pib"]);

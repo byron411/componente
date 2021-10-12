@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Npgsql;
 
 namespace fabricaDAO
 {
@@ -19,23 +20,11 @@ namespace fabricaDAO
         {
             try
             {
-                CiudadDTO nuevo = selectByPK(pCiudad);
-
-                if (nuevo != null)
-                {
-                    throw new Exception("la ciudad ya existe !..");
-                }
-
-                // Llamar al procedimiento que inserta una ciudad
-                _comando.CommandText = "insertarCiudad";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nNombre", pCiudad.Nombre);
-                _comando.Parameters.AddWithValue("nDistrito", pCiudad.Distrito);
-                _comando.Parameters.AddWithValue("nPoblacion", pCiudad.Poblacion);
-                _comando.Parameters.AddWithValue("nCodigo_pais", pCiudad.IdPais);
-
+               //TODO completar sentencia sql para agregar una ciudad
+                string sql = "insert into ciudad (nombre, distrito, poblacion,codigo_pais) values('"+pCiudad.Nombre+"','"+pCiudad.Distrito+"',"+pCiudad.Poblacion+",'"+pCiudad.IdPais+"');";
                 _conexion.Open();
-                _comando.ExecuteNonQuery();
+                NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
+                comando.ExecuteNonQuery();
                 _conexion.Close();
 
                 return true;
@@ -64,17 +53,11 @@ namespace fabricaDAO
         {
             try
             {
-                // lamar al procedimiento que actualiza una ciudad
-                _comando.CommandText = "actualizarCiudad";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nCodigo_ciudad", pCiudad.IdCiudad);
-                _comando.Parameters.AddWithValue("nNombre", pCiudad.Nombre);
-                _comando.Parameters.AddWithValue("nDistrito", pCiudad.Distrito);
-                _comando.Parameters.AddWithValue("nPoblacion", pCiudad.Poblacion);
-                _comando.Parameters.AddWithValue("nCodigo_pais", pCiudad.IdPais);
-
+                
+                string sql = "update ciudad set nombre='"+pCiudad.Nombre+"', distrito='"+pCiudad.Distrito+"', poblacion="+pCiudad.Poblacion+", codigo_pais='"+pCiudad.IdPais+"' where codigo_ciudad="+pCiudad.IdCiudad+";";
                 _conexion.Open();
-                _comando.ExecuteNonQuery();
+                NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
+;               comando.ExecuteNonQuery();
                 _conexion.Close();
 
                 return true;
@@ -104,12 +87,17 @@ namespace fabricaDAO
             try
             {
                 // Llamar al procedimiento que elimina a una ciudad
-                _comando.CommandText = "eliminarCiudad";
+                /*_comando.CommandText = "eliminarCiudad";
                 _comando.Parameters.Clear();
                 _comando.Parameters.AddWithValue("nCodigo_ciudad", pCiudad.IdCiudad);
 
                 _conexion.Open();
                 _comando.ExecuteNonQuery();
+                _conexion.Close();*/
+                string sql = "delete from ciudad where codigo_ciudad="+pCiudad.IdCiudad+"";
+                _conexion.Open();
+                NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
+                comando.ExecuteNonQuery();
                 _conexion.Close();
 
                 return true;
@@ -234,12 +222,21 @@ namespace fabricaDAO
                 DataSet conjunto = new DataSet();
 
                 // Llamar al procedimiento que devuelve las ciudades de acuerdo con los parámetros dados
-                _comando.CommandText = "seleccionarCiudadPorCriterio";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("pIdPais", pIdPais);
-                _comando.Parameters.AddWithValue("pNombre", pNombre);
-                _comando.Parameters.AddWithValue("pDistrito", pDistrito);
-                _adaptador.Fill(conjunto);
+                if (pIdPais == "" && pNombre == "" && pDistrito == "") { 
+                string sql = "select * from ciudad;";
+                _conexion.Open();
+                NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                adaptador.Fill(conjunto);
+                _conexion.Close();
+            }
+                else
+                {
+                    string sql = "select * from ciudad where codigo_pais='"+pIdPais+"' or nombre='"+pNombre+"' or distrito='"+pDistrito+"';";
+                    _conexion.Open();
+                    NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
+                    adaptador.Fill(conjunto);
+                    _conexion.Close();
+                }
                 //
                 for (int i = 0; i < conjunto.Tables[0].Rows.Count; i++)
                 {
