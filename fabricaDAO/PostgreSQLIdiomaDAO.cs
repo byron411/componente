@@ -53,19 +53,12 @@ namespace fabricaDAO
         {
             try
             {
-                // TODO Completar para llamar al procedimiento que actualiza un idioma
-                _comando.CommandText = "actualizarIdioma";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nId_idioma", pIdioma.IdIdioma);
-                _comando.Parameters.AddWithValue("nNombre", pIdioma.Nombre);
-                _comando.Parameters.AddWithValue("nOficial", pIdioma.Oficial);
-                _comando.Parameters.AddWithValue("nPorcentajeUtilizacion", pIdioma.PorcentajeUtilizacion);
-                _comando.Parameters.AddWithValue("nCodigo_pais", pIdioma.IdPais);
-
+                // TODO Completar para ejecutar sql que actualiza un idioma
+                string sql = "update idioma set nombre='" + pIdioma.Nombre + "', oficial=" + pIdioma.Oficial + ",porcentajeutilizacion=" + pIdioma.PorcentajeUtilizacion + ",codigo_pais='" + pIdioma.IdPais + "' where id_idioma=" + pIdioma.IdIdioma + ";";
                 _conexion.Open();
-                _comando.ExecuteNonQuery();
+                NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
+                comando.ExecuteNonQuery();
                 _conexion.Close();
-                //
                 return true;
             }
             catch (Exception error)
@@ -91,15 +84,12 @@ namespace fabricaDAO
         {
             try
             {
-                // TODO Completar para llamar al procedimiento que elimina a un idioma
-                _comando.CommandText = "eliminarIdioma";
-                _comando.Parameters.Clear();
-                _comando.Parameters.AddWithValue("nId_idioma", pIdioma.IdIdioma);
-
+                // TODO Completar para ejecutar sql que elimina a un idioma
+                string sql = "delete from idioma where id_idioma=" + pIdioma.IdIdioma + ";";
                 _conexion.Open();
-                _comando.ExecuteNonQuery();
+                NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
+                comando.ExecuteNonQuery();
                 _conexion.Close();
-                //
                 return true;
             }
             catch (Exception error)
@@ -172,7 +162,7 @@ namespace fabricaDAO
 
                 // TODO Completar para ejecutar sql que devuelve un país de acuerdo con su ID
            
-                string sql = "select * from idioma where codigo_idioma=" + pIdioma.IdIdioma + ";";
+                string sql = "select * from idioma where id_idioma=" + pIdioma.IdIdioma + ";";
                 _conexion.Open();
                 NpgsqlDataAdapter adaptador = new NpgsqlDataAdapter(sql, _conexion);
                 adaptador.Fill(conjunto);
