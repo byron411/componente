@@ -89,6 +89,7 @@ namespace fabricaDAO
         {
             try
             {
+                /*
                 PaisDTO nuevo;
 
                 nuevo = selectByPK(pPais);
@@ -117,7 +118,12 @@ namespace fabricaDAO
                 _conexion.Open();
                 _comando.ExecuteNonQuery();
                 _conexion.Close();
-                //
+                //*/
+                string sql = "delete from pais where codigo_pais='" + pPais.IdPais + "';";
+                _conexion.Open();
+                NpgsqlCommand comando = new NpgsqlCommand(sql, _conexion);
+                comando.ExecuteNonQuery();
+                _conexion.Close();
                 return true;
             }
             catch (Exception error)
